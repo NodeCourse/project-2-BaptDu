@@ -1,4 +1,4 @@
-const {User} = require('../database');
+const {User, Vitae, Work, Skill,Education} = require('../database');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const router = require('express').Router();
@@ -22,33 +22,35 @@ router.route('/api/users')
         const picture = req.body.picture;
         const password = req.body.password;
 
-        if (username === username && firstName === firstName && lastName === lastName && email === email) {
-            return res.send('Les informations suivantes sont déjà dans notre base de donnée')
-        }else {
-        User
-            .sync()
-            .then(function () {
-                User.create({
-                    username: username,
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    picture: picture,
-                    password: password
-                });
-                res.send(200);
-            })
-            .catch((error) => {
-                console.log(error);
-                res.render('errors/500', {error: error});
-            })
-        }
+        // if (username !== username && firstName !== firstName && lastName !== lastName && email !== email) {
+
+            User
+                .sync()
+                .then(function () {
+                    User.create({
+                        username: username,
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        picture: picture,
+                        password: password
+                    });
+                    res.redirect('/profile/' + req.user.id);
+                })
+                .catch((error) => {
+                    res.render('500', {error: error});
+                })
+
+        // } else {
+        //
+        //     return res.send('Les informations suivantes sont déjà dans notre base de donnée')
+        // }
     });
 
-router.route('/api/users/:id')
+router.route('/api/user/:id')
     .get(function (req, res) {
         User
-            .findById(req.params.id)
+            .findById(req.params.id, {include: [Vitae]})
             .then(User => res.json(User))
             .catch((error) => {
                 res.render('500', {error: error});
@@ -58,7 +60,21 @@ router.route('/api/users/:id')
 router.post('/login',
     passport.authenticate('local', {
         failureRedirect: '/login',
-        successRedirect: '/profile'
+        successRedirect: '/'
     }));
+
+router.route('/api/user/:userId/:id')
+    .get(function (req, res) {
+        Vitae
+            .findById(req.params.id, {include: [Work,Skill,Education]})
+            .then(Vitae => res.json(Vitae));
+        User
+            .findById(req.params.userId)
+            .catch((error) => {
+                res.render('500', {error: error});
+            })
+
+
+    });
 
 module.exports = router;

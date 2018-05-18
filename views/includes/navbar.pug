@@ -3,7 +3,7 @@ nav
         ul.right.hide-on-med-and-down
             if user
                 li
-                    a(href="/profile") #{user.username}
+                    a(href='/profile/' + user.id) #{user.username}
                 li
                     a(href="/logout") Se déconnecter
             else

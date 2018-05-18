@@ -6,4 +6,40 @@ block content
     div.container
         div.row.center
             div.col.s12
-
+                div.card
+                    div.card-title
+                        p Générer votre nouveau CV sur CurriculumVitea 2.0
+                    div.card-content
+                        form(method='POST' action='/api/curriculumVitaes' enctype="x-www-form-urlencoded")
+                            div.row
+                                div.input-field.col.s12
+                                    input#title.validate(type="text" name="title")
+                                    label(for="title") Titre de votre CV :
+                            div.row
+                                div.input-field.col.s6
+                                    input#nameFirst.validate(type="text" name="nameFirst" value=user.firstName)
+                                    label(for="nameFirst") Votre Prénom :
+                                div.input-field.col.s6
+                                    input#nameLast.validate(type="text" name="nameLast" value=user.lastName)
+                                    label(for="nameLast") Votre Nom :
+                            div.row
+                                div.input-field.col.s6
+                                    input#birth.validate(type="text" name="birth")
+                                    label(for="birth") Votre date de naissance :
+                                div.input-field.col.s6
+                                    input#address.validate(type="text" name="address")
+                                    label(for="address") Votre Adresse :
+                            div.row
+                                div.input-field.col.s12
+                                    input#nameEmail.validate(type="text" name="nameEmail" value=user.email)
+                                    label(for="nameEmail") Votre Email :
+                            div.row
+                                div.input-field.col.s12
+                                    input#phone.validate(type="tel" name="phone" value=user.phone)
+                                    label(for="phone") Votre Telephone :
+                            div.row
+                                div.input-field.col.s12
+                                    input#picture.validate(type="text" name="picture")
+                                    label(for="picture") Url de l'image :
+                            div.row
+                                button.btn.waves-effect.waves-light(type="submit" name="action") Envoyer
