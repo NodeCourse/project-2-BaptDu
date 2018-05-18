@@ -1,6 +1,6 @@
 const {User} = require('../database');
+const passport = require('passport');
 const router = require('express').Router();
-
 
 router.route('/api/users')
     .get(function (req, res) {
@@ -16,7 +16,15 @@ router.route('/api/users')
         User
             .sync()
             .then(function () {
-                User.create(req.body);
+                User.create({
+                    username: req.body.username,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.picture,
+                    picture: req.body.picture,
+                    password: req.body.password
+                });
+                res.redirect("/");
                 res.send(200)
             })
             .catch((error) => {
@@ -33,5 +41,11 @@ router.route('/api/users/:id')
                 res.render('500', {error: error});
             })
     });
+
+router.post('/login',
+    passport.authenticate('local', {
+        failureRedirect: '/login',
+        successRedirect: '/profile'
+    }));
 
 module.exports = router;

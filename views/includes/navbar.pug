@@ -1,0 +1,19 @@
+nav
+    div.nav-wrapper
+        ul.right.hide-on-med-and-down
+            if user
+                li
+                    a(href="/profile") #{user.username}
+                li
+                    a(href="/logout") Se déconnecter
+            else
+                li
+                    a(href="/register") S'inscrire
+                li
+                    a(href="/login") Se connecter
+
+        ul.left.hide-on-med-and-down
+                li
+                    a(href="/") Accueil
+                li
+                    a(href="/generate") Générer votre cv
