@@ -9,6 +9,7 @@ const COOKIE_SECRET = 'cookie secret';
 const port = process.env.PORT || 3000;
 
 require('./config/passport');
+require('./config/error');
 
 app.set('view engine', 'pug');
 

@@ -1,5 +1,6 @@
 const {User} = require('../database');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const router = require('express').Router();
 
 router.route('/api/users')
@@ -13,23 +14,35 @@ router.route('/api/users')
     })
 
     .post(function (req, res) {
-        User
-            .sync()
-            .then(function () {
-                User.create({
-                    username: req.body.username,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    email: req.body.picture,
-                    picture: req.body.picture,
-                    password: req.body.password
-                });
-                res.redirect("/");
-                res.send(200)
-            })
-            .catch((error) => {
-                res.render('500', {error: error});
-            })
+
+        const username = req.body.username;
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+        const email = req.body.email;
+        const picture = req.body.picture;
+        const password = req.body.password;
+
+        if (username === null && firstName === null && lastName === null && email === null) {
+            User
+                .sync()
+                .then(function () {
+                    User.create({
+                        username: username,
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        picture: picture,
+                        password: password
+                    });
+                    res.redirect("/");
+                    res.send(200)
+                })
+                .catch((error) => {
+                    res.render('500', {error: error});
+                })
+        }else {
+            res.redirect('/')
+        }
     });
 
 router.route('/api/users/:id')
