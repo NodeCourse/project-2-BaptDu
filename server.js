@@ -34,6 +34,16 @@ app.use(APIUser);
 app.get('/', (req, res) => {
     res.render('home',{title: 'Accueil - CVG', user: req.user})
 });
+//Gestion des CVs
+app.get('/curriculum', (req, res) => {
+    const user = req.user;
+
+    if(user){
+        res.render('generate', {title: 'Générer son curriculum vitae - CVG', user})
+    }else{
+        res.redirect('/register')
+    }
+});
 
 //Gestion des utilisateurs
 app.get('/profile', (req, res) => {
@@ -41,11 +51,23 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login', {title: 'Mon Espace Membre- CVG'})
+    const user = req.user;
+
+    if(!user){
+        res.render('login', {title: 'Mon Espace Membre- CVG'})
+    }else {
+        res.redirect('/profile')
+    }
 });
 
 app.get('/register', (req, res) => {
-    res.render('register', {title: 'Nouveau client - CVG'})
+    const user = req.user;
+
+    if(!user){
+        res.render('register', {title: 'Nouveau client - CVG'})
+    }else {
+        res.redirect('/profile')
+    }
 });
 
 app.get('/logout', function(req, res){

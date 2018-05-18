@@ -1,5 +1,9 @@
 const Sequelize = require('Sequelize');
 const UserModel = require('../models/user');
+const CurriculumVitaeModelModel = require('../models/curriculumVitae');
+const EducationModel = require('../models/education');
+const SkillModel = require('../models/skill');
+const WorkExperienceModel = require('../models/workExperience');
 
 const database = new Sequelize('GenerateCV', 'root', '', {
     host: 'localhost',
@@ -8,6 +12,20 @@ const database = new Sequelize('GenerateCV', 'root', '', {
 });
 
 const User = UserModel(database, Sequelize);
+const Vitae = CurriculumVitaeModelModel(database, Sequelize);
+const Education = EducationModel(database, Sequelize);
+const Skill = SkillModel(database, Sequelize);
+const Work = WorkExperienceModel(database, Sequelize);
+
+Vitae.belongsTo(User);
+User.hasMany(Vitae);
+
+Education.belongsTo(Vitae);
+Work.belongsTo(Vitae);
+Skill.belongsTo(Vitae);
+Vitae.hasMany(Education);
+Vitae.hasMany(Skill);
+Vitae.hasMany(Work);
 
 database.sync({force: false})
     .then(() => {
@@ -19,5 +37,9 @@ database.sync({force: false})
     });
 
 module.exports = {
-    User
+    User,
+    Vitae,
+    Education,
+    Skill,
+    Work
 };
