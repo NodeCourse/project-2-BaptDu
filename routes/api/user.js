@@ -22,26 +22,26 @@ router.route('/api/users')
         const picture = req.body.picture;
         const password = req.body.password;
 
-        if (username === null && firstName === null && lastName === null && email === null) {
-            User
-                .sync()
-                .then(function () {
-                    User.create({
-                        username: username,
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        picture: picture,
-                        password: password
-                    });
-                    res.redirect("/");
-                    res.send(200)
-                })
-                .catch((error) => {
-                    res.render('500', {error: error});
-                })
+        if (username === username && firstName === firstName && lastName === lastName && email === email) {
+            return res.send('Les informations suivantes sont déjà dans notre base de donnée')
         }else {
-            res.redirect('/')
+        User
+            .sync()
+            .then(function () {
+                User.create({
+                    username: username,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    picture: picture,
+                    password: password
+                });
+                res.send(200);
+            })
+            .catch((error) => {
+                console.log(error);
+                res.render('errors/500', {error: error});
+            })
         }
     });
 
