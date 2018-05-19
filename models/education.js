@@ -1,9 +1,9 @@
 module.exports = (database, type) => {
     return database.define('education', {
-        titleVitae: type.STRING,
-        subtitle: type.STRING,
-        content: type.STRING,
-        dateAt: type.DATE,
-        dateEnd: type.DATE
+        titleEduc: type.STRING,
+        subtitleEduc: type.STRING,
+        contentEduc: type.STRING,
+        dateAtEduc: type.DATE,
+        dateEndEduc: type.DATE
     })
 };

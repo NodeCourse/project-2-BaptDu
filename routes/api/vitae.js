@@ -1,4 +1,4 @@
-const {Vitae, User} = require('../database');
+const {Vitae} = require('../database');
 const router = require('express').Router();
 
 router.route('/api/curriculumVitaes')

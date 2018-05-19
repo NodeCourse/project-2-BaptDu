@@ -736,23 +736,23 @@ taxonomy</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="166" parent="25" name="titleVitae">
+    <column id="166" parent="25" name="titleEduc">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="167" parent="25" name="subtitle">
+    <column id="167" parent="25" name="subtitleEduc">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="168" parent="25" name="content">
+    <column id="168" parent="25" name="contentEduc">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="169" parent="25" name="dateAt">
+    <column id="169" parent="25" name="dateAtEduc">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="170" parent="25" name="dateEnd">
+    <column id="170" parent="25" name="dateEndEduc">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
@@ -792,23 +792,23 @@ taxonomy</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="178" parent="26" name="title">
+    <column id="178" parent="26" name="titleSkill">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="179" parent="26" name="subtitle">
+    <column id="179" parent="26" name="subtitleSkill">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="180" parent="26" name="content">
+    <column id="180" parent="26" name="contentSkill">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="181" parent="26" name="dateAt">
+    <column id="181" parent="26" name="dateAtSkill">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="182" parent="26" name="dateEnd">
+    <column id="182" parent="26" name="dateEndSkill">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
@@ -961,23 +961,23 @@ taxonomy</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="215" parent="29" name="title">
+    <column id="215" parent="29" name="titleWork">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="216" parent="29" name="subtitle">
+    <column id="216" parent="29" name="subtitleWork">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="217" parent="29" name="content">
+    <column id="217" parent="29" name="contentWork">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="218" parent="29" name="dateAt">
+    <column id="218" parent="29" name="dateAtWork">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="219" parent="29" name="dateEnd">
+    <column id="219" parent="29" name="dateEndWork">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
