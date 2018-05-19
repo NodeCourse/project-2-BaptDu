@@ -27,10 +27,10 @@ router.route('/api/curriculumVitaes')
                     picture: req.body.picture,
                     userId: req.user.id
                 });
-                res.send(200);
+                res.redirect('/');
             })
             .catch((error) => {
-                res.render('errors/500', {error: error});
+                res.render('500', {error: error});
             })
 
     });
