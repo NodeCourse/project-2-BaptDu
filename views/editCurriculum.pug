@@ -1,0 +1,29 @@
+extends includes/layout.pug
+
+block content
+    include includes/navbar.pug
+    div.container
+        div.row
+            div.col.s12
+                div.card
+                    div.card-title.center
+                        p #{vitae.title}
+                    div.card-image
+                        img(src=vitae.picture)
+                        a(href='curriculum')
+            div.row
+                div.col.s12
+                    div.card
+                        div.card-title
+                        div.card-content
+                            form(method='POST' action='/api/user/:userId/:id/educations' enctype="x-www-form-urlencoded")
+                                div.row
+                                    div.input-field.col.s12
+                                        input#titleVitae.validate(type="text" name="titleVitae")
+                                        label(for="titleVitae") Votre Titre :
+                                div.row
+                                    div.input-field.col.s12
+                                        input#subtitle.validate(type="text" name="subtitle")
+                                        label(for="subtitle") Votre sous-Titre
+                                div.row
+                                    button.btn.waves-effect.waves-light(type="submit" name="action") Envoyer
