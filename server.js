@@ -76,7 +76,7 @@ app.get('/profile/:userId/:vitaeId', (req, res) => {
             } else {
                 const user = req.user;
                 const vitae = JSON.parse(body);
-                res.render('curriculum', {vitae}, user);
+                res.render('curriculum',user, {vitae});
             }
         });
 });
@@ -93,7 +93,7 @@ app.get('/profile/:userId/:vitaeId/edit', (req, res) => {
             } else {
                 const user = req.user;
                 const vitae = JSON.parse(body);
-                res.render('editCurriculum', {vitae}, user);
+                res.render('editCurriculum', {user, vitae});
             }
         });
 });
