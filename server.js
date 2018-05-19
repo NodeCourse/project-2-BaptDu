@@ -64,10 +64,10 @@ app.get('/profile/:id', (req, res) => {
         });
 });
 
-app.get('/profile/:userId/:id', (req, res) => {
+app.get('/profile/:userId/:vitaeId', (req, res) => {
 
     request({
-            url: 'http://localhost:3000/api/user/' + req.params.userId +'/'+ req.params.id
+            url: 'http://localhost:3000/api/user/' + req.params.userId +'/'+ req.params.vitaeId
         },
         (err, response, body) => {
             if (err) {
@@ -77,6 +77,23 @@ app.get('/profile/:userId/:id', (req, res) => {
                 const user = req.user;
                 const vitae = JSON.parse(body);
                 res.render('curriculum', {vitae}, user);
+            }
+        });
+});
+
+app.get('/profile/:userId/:vitaeId/edit', (req, res) => {
+
+    request({
+            url: 'http://localhost:3000/api/user/' + req.params.userId +'/'+ req.params.vitaeId
+        },
+        (err, response, body) => {
+            if (err) {
+                console.log(err);
+                res.render('500', {error: err});
+            } else {
+                const user = req.user;
+                const vitae = JSON.parse(body);
+                res.render('editCurriculum', {vitae}, user);
             }
         });
 });

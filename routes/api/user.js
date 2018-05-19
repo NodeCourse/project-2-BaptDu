@@ -63,10 +63,10 @@ router.post('/login',
         successRedirect: '/'
     }));
 
-router.route('/api/user/:userId/:id')
+router.route('/api/user/:userId/:vitaeId')
     .get(function (req, res) {
         Vitae
-            .findById(req.params.id, {include: [Work,Skill,Education]})
+            .findById(req.params.vitaeId, {include: [Work,Skill,Education]})
             .then(Vitae => res.json(Vitae));
         User
             .findById(req.params.userId)
@@ -75,6 +75,27 @@ router.route('/api/user/:userId/:id')
             })
 
 
+    });
+
+router.route('/api/user/:userId/:vitaeId/educations')
+    .post(function (req, res) {
+        Education
+            .sync()
+            .then(function () {
+                Education.create({
+                    titleVitae: req.body.titleVitae,
+                    subtitle: req.body.subtitle,
+                    content: req.body.content,
+                    dateAt: req.body.dateAt,
+                    dateEnd: req.body.dateEnd,
+                    userId: req.params.userId,
+                    vitaeId: req.params.vitaeId
+                });
+                res.redirect('/');
+            })
+            .catch((error) => {
+                res.render('500', {error: error});
+            })
     });
 
 module.exports = router;
