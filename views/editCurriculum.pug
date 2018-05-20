@@ -1,0 +1,138 @@
+extends includes/layout.pug
+
+block content
+    include includes/navbar.pug
+    div.container
+        div.row
+            div.col.s5.push-s7
+                ul.collapsible(data-collapsible="accordion")
+                    li
+                        div.collapsible-header
+                            p Ajouter un Education
+                        div.collapsible-body
+                            div.row.center
+                                div.col.s12
+                                    div.card
+                                        div.card-title
+                                        div.card-content
+                                            form(method='POST' action='/api/user/:userId/:vitaeId/educations' enctype="x-www-form-urlencoded")
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#titleEduc.validate(type="text" name="titleEduc")
+                                                        label(for="titleEduc") Votre Titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#subtitleEduc.validate(type="text" name="subtitleEduc")
+                                                        label(for="subtitleEduc") Votre sous titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        textarea.materialize-textarea#contentEduc.validate(name="contentEduc")
+                                                        label(for="contentEduc") Votre description :
+                                                div.row
+                                                    div.input-field.col.s6
+                                                        input#dateAtEduc.validate(type="date" name="dateAtEduc")
+                                                        label(for="dateAtEduc") Date de début :
+                                                    div.input-field.col.s6
+                                                        input#dateEndEduc.validate(type="date" name="dateEndEduc")
+                                                        label(for="dateEndEduc") Date de fin  :
+                                                div.row
+                                                    button.btn.waves-effect.waves-light(type="submit" name="action") Ajouter
+                    li
+                        div.collapsible-header
+                            p Ajouter un Skill
+                        div.collapsible-body
+                            div.row.center
+                                div.col.s12
+                                    div.card
+                                        div.card-title
+                                        div.card-content
+                                            form(method='POST' action='/api/user/:userId/:vitaeId/skills' enctype="x-www-form-urlencoded")
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#titleSkill.validate(type="text" name="titleSkill")
+                                                        label(for="titleSkill") Votre Titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#subtitleSkill.validate(type="text" name="subtitleEduc")
+                                                        label(for="subtitleEduc") Votre sous titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        textarea.materialize-textarea#contentSkill.validate(name="contentSkill")
+                                                        label(for="contentSkill") Votre description:
+                                                div.row
+                                                    div.input-field.col.s6
+                                                        input#dateAtSkill.validate(type="date" name="dateAtSkill")
+                                                        label(for="dateAtSkill") Date de début :
+                                                    div.input-field.col.s6
+                                                        input#dateEndSkill.validate(type="date" name="dateEndSkill")
+                                                        label(for="dateEndSkill") Date de fin  :
+
+                                                div.row
+                                                    button.btn.waves-effect.waves-light(type="submit" name="action") Ajouter
+                    li
+                        div.collapsible-header
+                            p Ajouter une Expérience
+                        div.collapsible-body
+                            div.row.center
+                                div.col.s12
+                                    div.card
+                                        div.card-title
+                                        div.card-content
+                                            form(method='POST' action='/api/user/:userId/:vitaeId/work' enctype="x-www-form-urlencoded")
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#titleWork.validate(type="text" name="titleWork")
+                                                        label(for="titleWork") Votre Titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        input#subtitleWork.validate(type="text" name="subtitleWork")
+                                                        label(for="subtitleWork") Votre sous titre :
+                                                div.row
+                                                    div.input-field.col.s12
+                                                        textarea.materialize-textarea#contentWork.validate(name="contentWork")
+                                                        label(for="contentWork") Votre sous titre
+                                                div.row
+                                                    div.row
+                                                        div.input-field.col.s6
+                                                            input#dateAtWork.validate(type="date" name="dateAtWork")
+                                                            label(for="dateAtWork") Date de début :
+                                                        div.input-field.col.s6
+                                                            input#dateEndWork.validate(type="date" name="dateEndWork")
+                                                            label(for="dateEndWork") Date de fin  :
+                                                    button.btn.waves-effect.waves-light(type="submit" name="action") Ajouter
+            div.col.s7.pull-s5
+                div.card
+                    div.card-title.center
+                        p #{vitae.title}
+                        div.card-image
+                            img.imgClass(src=vitae.picture)
+                            a(href='curriculum')
+                        div.infoPro
+                            div.fullnamePro
+                                P #{vitae.nameLast} #{vitae.nameFirst}
+                                P #{vitae.nameEmail}
+                            div.infoPrivate
+                                p #{vitae.address}
+                                P #{vitae.phone}
+                            div.datePro
+                                P #{vitae.birth}
+                    for educations in vitae.education
+                        div.card-title.educ
+                            p #{educations.titleEduc}
+                                span.date #{educations.dateAtEduc} #{educations.dateEndEduc}
+                        div.card-content
+                            p #{educations.subtitleEduc}
+
+                    for work in vitae.works
+                        div.card-title.educ
+                            p #{work.titleWork}
+                                span.date #{work.dateAtWork} #{work.dateEndWork}
+                        div.card-content
+                            p #{work.subtitleWork}
+
+                    for skill in vitae.skills
+                        div.card-title.educ
+                            p #{skill.titleSkill}
+                                span.date #{skill.dateAtSkill} #{skill.dateEndSkill}
+                        div.card-content
+                            p #{skill.subtitleSkill}

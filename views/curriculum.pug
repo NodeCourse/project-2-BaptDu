@@ -1,0 +1,42 @@
+extends includes/layout.pug
+
+block content
+    include includes/navbar.pug
+    div.container
+        div.row
+            div.col.s12
+                div.card
+                    div.card-title.center
+                        p #{vitae.title}
+                        div.card-image
+                            img.imgClass(src=vitae.picture)
+                            a(href='curriculum')
+                        div.infoPro
+                            div.fullnamePro
+                                P #{vitae.nameLast} #{vitae.nameFirst}
+                                P #{vitae.nameEmail}
+                            div.infoPrivate
+                                p #{vitae.address}
+                                P #{vitae.phone}
+                            div.datePro
+                                P #{vitae.birth}
+                    for educations in vitae.education
+                        div.card-title.educ
+                            p #{educations.titleEduc}
+                                span.date #{educations.dateAtEduc} #{educations.dateEndEduc}
+                        div.card-content
+                            p #{educations.subtitleEduc}
+
+                    for work in vitae.works
+                        div.card-title.educ
+                            p #{work.titleWork}
+                                span.date #{work.dateAtWork} #{work.dateEndWork}
+                        div.card-content
+                            p #{work.subtitleWork}
+
+                    for skill in vitae.skills
+                        div.card-title.educ
+                            p #{skill.titleSkill}
+                                span.date #{skill.dateAtSkill} #{skill.dateEndSkill}
+                        div.card-content
+                            p #{skill.subtitleSkill}

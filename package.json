@@ -1,0 +1,33 @@
+{
+  "name": "project-2-baptdu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NodeCourse/project-2-BaptDu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NodeCourse/project-2-BaptDu/issues"
+  },
+  "homepage": "https://github.com/NodeCourse/project-2-BaptDu#readme",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "formstone": "^1.4.6",
+    "mysql2": "^1.5.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.3",
+    "request": "^2.86.0",
+    "sequelize": "^4.37.7"
+  }
+}

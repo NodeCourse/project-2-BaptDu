@@ -1,0 +1,14 @@
+extends includes/layout.pug
+
+block content
+    include includes/navbar.pug
+    div.container
+        div.row
+            div.col.s12
+                for vitae in user.vitaes
+                    div.col.s4
+                        div.card
+                            div.card-title.center
+                                p #{vitae.title}
+                            div.card-image
+                                img(src=vitae.picture)
