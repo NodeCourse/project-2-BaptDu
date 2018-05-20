@@ -5,7 +5,7 @@ const EducationModel = require('../models/education');
 const SkillModel = require('../models/skill');
 const WorkExperienceModel = require('../models/workExperience');
 
-const database = new Sequelize('GenerateCV', 'root', '', {
+const database = new Sequelize('generatecv', 'root', '', {
     host: 'localhost',
     password: null,
     dialect: 'mysql'

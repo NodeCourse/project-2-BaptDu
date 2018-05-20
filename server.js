@@ -34,16 +34,16 @@ app.use(APIUser, APICV);
 
 //Page d'accueil
 app.get('/', (req, res) => {
-    res.render('home',{title: 'Accueil - CV2.0', user: req.user})
+    res.render('home', {title: 'Accueil - CV2.0', user: req.user})
 });
 
 //Gestion des CVs
 app.get('/curriculum', (req, res) => {
     const user = req.user;
 
-    if(!user){
+    if (!user) {
         res.redirect('/register')
-    }else{
+    } else {
         res.render('generate', {title: 'Générer son curriculum vitae - CV2.0', user})
     }
 });
@@ -67,7 +67,7 @@ app.get('/profile/:id', (req, res) => {
 app.get('/profile/:userId/:vitaeId', (req, res) => {
 
     request({
-            url: 'http://localhost:3000/api/user/' + req.params.userId +'/'+ req.params.vitaeId
+            url: 'http://localhost:3000/api/user/' + req.params.userId + '/' + req.params.vitaeId
         },
         (err, response, body) => {
             if (err) {
@@ -76,7 +76,7 @@ app.get('/profile/:userId/:vitaeId', (req, res) => {
             } else {
                 const user = req.user;
                 const vitae = JSON.parse(body);
-                res.render('curriculum',user, {vitae});
+                res.render('curriculum', {user, vitae});
             }
         });
 });
@@ -84,16 +84,24 @@ app.get('/profile/:userId/:vitaeId', (req, res) => {
 app.get('/profile/:userId/:vitaeId/edit', (req, res) => {
 
     request({
-            url: 'http://localhost:3000/api/user/' + req.params.userId +'/'+ req.params.vitaeId
+            url: 'http://localhost:3000/api/user/' + req.params.userId + '/' + req.params.vitaeId
         },
         (err, response, body) => {
             if (err) {
                 console.log(err);
                 res.render('500', {error: err});
             } else {
+
                 const user = req.user;
+
+                if (!user) {
+                    return res.redirect('/login')
+                }
+
                 const vitae = JSON.parse(body);
                 res.render('editCurriculum', {user, vitae});
+
+
             }
         });
 });
@@ -102,9 +110,9 @@ app.get('/profile/:userId/:vitaeId/edit', (req, res) => {
 app.get('/login', (req, res) => {
     const user = req.user;
 
-    if(!user){
+    if (!user) {
         res.render('login', {title: 'Mon Espace Membre - CV2.0'})
-    }else {
+    } else {
         res.redirect('/profile')
     }
 });
@@ -112,31 +120,17 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     const user = req.user;
 
-    if(!user){
+    if (!user) {
         res.render('register', {title: 'Nouveau client - CV2.0'})
-    }else {
+    } else {
         res.redirect('/profile')
     }
 });
 
-app.get('/logout', function(req, res){
+app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(port);

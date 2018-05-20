@@ -1,15 +1,52 @@
-body{
+body {
     font-family: 'Noto Serif', serif;
 }
 
-.card{
+.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.imgClass{
-
-    border-radius: 50%;
-    padding: 5px;
-    width: 150px;
-
+.card .card-image img.imgClass {
+    width: 50%;
+    padding: 10px;
 }
+
+.infoPro{
+    position: absolute;
+    font-size: 10px;
+    top: 8%;
+    right: 30%;
+}
+
+.infoPro p{
+    margin: 0;
+    padding: 0;
+}
+
+.fullnamePro{
+    margin: 10px;
+}
+
+.datePro {
+    position: absolute;
+    margin: 10px;
+    top: 9%;
+    right: -120%;
+}
+
+.infoPrivate{
+    margin: 10px;
+}
+
+.card .card-title .Educ p{
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.card-title.educ span {
+
+    font-size: 10px;
+    text-align: right;
+}
+

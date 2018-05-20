@@ -35,7 +35,7 @@ router.route('/api/users')
                     picture: picture,
                     password: password
                 });
-                res.redirect('/profile/' + req.user.id);
+                res.redirect('/login');
             })
             .catch((error) => {
                 res.render('500', {error: error});
@@ -97,7 +97,7 @@ router.route('/api/user/:userId/:vitaeId/educations')
                     titleEduc: req.body.titleEduc,
                     subtitleEduc: req.body.subtitleEduc,
                     contentEduc: req.body.contentEduc,
-                    dateAtEduc: req.body.dateAtEduc,
+                    dateAtEduc: new Date(jsonDate),
                     dateEndEduc: req.body.dateEndEduc,
                     vitaeId: req.params.vitaeId
                 });
